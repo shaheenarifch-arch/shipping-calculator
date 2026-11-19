@@ -161,6 +161,16 @@ country: "PK", city: $("apk-city").value, postal: $("apk-postal").value,
 category: $("apk-cat").value, weight: $("apk-weight").value, weightUnit: $("apk-unit").value,
 value: $("apk-value").value, ddp: $("apk-ddp").checked
 };
+body.city = body.city.trim(); body.postal = body.postal.trim();
+var w = parseFloat(body.weight), v = parseFloat(body.value);
+var wMax = body.weightUnit === "lb" ? 66 : 30, wMin = body.weightUnit === "lb" ? 0.1 : 0.05;
+var err = "", field = null;
+if (!body.city) { err = "Please enter your city in Pakistan (e.g. Lahore)."; field = "apk-city"; }
+else if (body.city.length < 2 || !/^[A-Za-z][A-Za-z .()'-]*$/.test(body.city)) { err = "Please enter a valid city name using letters only (e.g. Karachi)."; field = "apk-city"; }
+else if (body.postal && !/^\d{5}$/.test(body.postal)) { err = "Postal code should be 5 digits (e.g. 54000), or leave it blank."; field = "apk-postal"; }
+else if (!(w >= wMin && w <= wMax)) { err = "Please enter a parcel weight between " + wMin + " and " + wMax + " " + body.weightUnit + ". For heavier parcels, message us on WhatsApp."; field = "apk-weight"; }
+else if (!(v >= 1 && v <= 5000)) { err = "Please enter an order value between $1 and $5,000. For higher values, message us on WhatsApp."; field = "apk-value"; }
+if (err) { msg.textContent = err; $(field).focus(); return; }
 btn.disabled=true; btn.textContent="Checking couriers…";
 fetch(API_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)})
 .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
