@@ -41,7 +41,14 @@ footer a{color:#0b6b3a}
 .apk-ship .wa{grid-column:1/-1;display:inline-block;text-align:center;padding:9px;border-radius:8px;background:#128C7E;color:#fff;text-decoration:none;font-weight:600;font-size:14px}
 .apk-ship .foot{margin-top:14px;font-size:12px;color:var(--mut);line-height:1.5}
 .apk-ship .foot a,.apk-ship .help a{color:var(--g2)}
-@media(max-width:560px){.apk-ship .grid{grid-template-columns:1fr}}
+.apk-stores{margin-top:18px}
+.apk-stores h3{margin:0 0 4px;font-size:16px;color:#01411C}
+.apk-stores .help{display:block;color:#5b6b61;font-size:12px;margin-bottom:10px}
+.apk-stores ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.apk-stores a{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 6px;border:1px solid #dfe7e2;border-radius:10px;text-decoration:none;color:#1d2a22;font-size:12px;font-weight:600;background:#fff}
+.apk-stores a:hover{border-color:#0b6b3a;box-shadow:0 0 0 2px #0b6b3a22}
+.apk-stores img{width:40px;height:40px;object-fit:contain}
+@media(max-width:560px){.apk-ship .grid{grid-template-columns:1fr}.apk-stores ul{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
@@ -116,6 +123,22 @@ Questions? <a id="apk-wa-help" href="#" target="_blank" rel="noopener">Message u
 </ol>
 <p style="margin:0 0 14px;font-size:13px;color:#5b6b61">You pay the store directly for your products. Our service charges are minimal.</p>
 <a class="wa" style="display:block" target="_blank" rel="noopener" href="https://wa.me/13137291534?text=Hi%20Authentic%20Pak%20USA%2C%20please%20send%20me%20a%20US%20delivery%20address%20and%20details%20for%20onward%20shipping%20to%20Pakistan.">Contact us for a US delivery address &amp; onward shipping</a>
+<div class="apk-stores">
+<h3>Top US stores our customers shop from</h3>
+<span class="help">Tap a store to open its website. Shop as normal and enter the US delivery address we give you at checkout. You can also order from any other US store.</span>
+<ul>
+<li><a href="https://www.amazon.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=amazon.com&amp;sz=128" alt="Amazon logo" loading="lazy">Amazon</a></li>
+<li><a href="https://www.walmart.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=walmart.com&amp;sz=128" alt="Walmart logo" loading="lazy">Walmart</a></li>
+<li><a href="https://www.target.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=target.com&amp;sz=128" alt="Target logo" loading="lazy">Target</a></li>
+<li><a href="https://www.macys.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=macys.com&amp;sz=128" alt="Macy's logo" loading="lazy">Macy's</a></li>
+<li><a href="https://www.nordstrom.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=nordstrom.com&amp;sz=128" alt="Nordstrom logo" loading="lazy">Nordstrom</a></li>
+<li><a href="https://www.nike.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=nike.com&amp;sz=128" alt="Nike logo" loading="lazy">Nike</a></li>
+<li><a href="https://www.sephora.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=sephora.com&amp;sz=128" alt="Sephora logo" loading="lazy">Sephora</a></li>
+<li><a href="https://www.bathandbodyworks.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bathandbodyworks.com&amp;sz=128" alt="Bath &amp; Body Works logo" loading="lazy">Bath &amp; Body Works</a></li>
+<li><a href="https://www.carters.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=carters.com&amp;sz=128" alt="Carter's logo" loading="lazy">Carter's</a></li>
+<li><a href="https://www.bestbuy.com/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bestbuy.com&amp;sz=128" alt="Best Buy logo" loading="lazy">Best Buy</a></li>
+</ul>
+</div>
 </section>
 </main>
 <footer>&copy; AuthenticPakUSA — Genuine American brands delivered to Pakistan. <a href="https://authenticpakusa.com/">Back to store</a></footer>
@@ -138,6 +161,16 @@ country: "PK", city: $("apk-city").value, postal: $("apk-postal").value,
 category: $("apk-cat").value, weight: $("apk-weight").value, weightUnit: $("apk-unit").value,
 value: $("apk-value").value, ddp: $("apk-ddp").checked
 };
+body.city = body.city.trim(); body.postal = body.postal.trim();
+var w = parseFloat(body.weight), v = parseFloat(body.value);
+var wMax = body.weightUnit === "lb" ? 66 : 30, wMin = body.weightUnit === "lb" ? 0.1 : 0.05;
+var err = "", field = null;
+if (!body.city) { err = "Please enter your city in Pakistan (e.g. Lahore)."; field = "apk-city"; }
+else if (body.city.length < 2 || !/^[A-Za-z][A-Za-z .()'-]*$/.test(body.city)) { err = "Please enter a valid city name using letters only (e.g. Karachi)."; field = "apk-city"; }
+else if (body.postal && !/^\d{5}$/.test(body.postal)) { err = "Postal code should be 5 digits (e.g. 54000), or leave it blank."; field = "apk-postal"; }
+else if (!(w >= wMin && w <= wMax)) { err = "Please enter a parcel weight between " + wMin + " and " + wMax + " " + body.weightUnit + ". For heavier parcels, message us on WhatsApp."; field = "apk-weight"; }
+else if (!(v >= 1 && v <= 5000)) { err = "Please enter an order value between $1 and $5,000. For higher values, message us on WhatsApp."; field = "apk-value"; }
+if (err) { msg.textContent = err; $(field).focus(); return; }
 btn.disabled=true; btn.textContent="Checking couriers…";
 fetch(API_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)})
 .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
