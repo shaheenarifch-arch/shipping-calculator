@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shipping Rates Calculator — USA to Pakistan | AuthenticPakUSA</title>
+<meta name="description" content="Check live courier prices to ship genuine American products from Boston, USA to any city in Pakistan, with or without customs duty included.">
+<link rel="canonical" href="https://shipping.authenticpakusa.com/">
+<style>
+body{margin:0;background:#f3f7f4;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1d2a22}
+header{background:#01411C;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+header a{color:#fff;text-decoration:none;font-weight:600}
+header .brand{font-size:20px;font-weight:800}
+header nav a{margin-left:16px;font-size:14px}
+main{padding:10px 14px 30px}
+footer{text-align:center;font-size:13px;color:#5b6b61;padding:20px}
+footer a{color:#0b6b3a}
+.apk-ship{--g:#01411C;--g2:#0b6b3a;--ink:#1d2a22;--mut:#5b6b61;--line:#dfe7e2;--bg:#f6faf7;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);max-width:760px;margin:24px auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-sizing:border-box}
+.apk-ship *{box-sizing:border-box}
+.apk-ship h1{margin:0 0 4px;font-size:24px;color:var(--g)}
+.apk-ship .sub{margin:0 0 16px;color:var(--mut);font-size:14px}
+.apk-ship .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.apk-ship .full{grid-column:1/-1}
+.apk-ship label{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+.apk-ship .help{display:block;font-weight:400;color:var(--mut);font-size:12px;margin-top:3px}
+.apk-ship input,.apk-ship select{width:100%;padding:10px;border:1px solid #c9d6ce;border-radius:8px;font-size:15px;background:#fff;color:var(--ink)}
+.apk-ship .row{display:flex;gap:8px}
+.apk-ship .row select{width:80px}
+.apk-ship .toggle{display:flex;align-items:flex-start;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:14px}
+.apk-ship .toggle input{width:auto;margin-top:3px}
+.apk-ship button.go{margin-top:14px;width:100%;padding:13px;border:0;border-radius:10px;background:var(--g);color:#fff;font-size:16px;font-weight:700;cursor:pointer}
+.apk-ship button.go:disabled{opacity:.6;cursor:wait}
+.apk-ship .msg{margin-top:12px;font-size:14px;color:#9b1c1c}
+.apk-ship .rates{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.apk-ship .rate{display:grid;grid-template-columns:1fr auto;gap:6px 12px;border:1px solid var(--line);border-radius:10px;padding:12px}
+.apk-ship .rate.best{border-color:var(--g2);box-shadow:0 0 0 2px #0b6b3a22}
+.apk-ship .nm{font-weight:700}
+.apk-ship .tag{display:inline-block;margin-left:6px;font-size:11px;background:var(--g);color:#fff;border-radius:20px;padding:2px 8px;vertical-align:middle}
+.apk-ship .meta{color:var(--mut);font-size:13px}
+.apk-ship .price{text-align:right;font-weight:800;font-size:18px;color:var(--g)}
+.apk-ship .wa{grid-column:1/-1;display:inline-block;text-align:center;padding:9px;border-radius:8px;background:#128C7E;color:#fff;text-decoration:none;font-weight:600;font-size:14px}
+.apk-ship .foot{margin-top:14px;font-size:12px;color:var(--mut);line-height:1.5}
+.apk-ship .foot a,.apk-ship .help a{color:var(--g2)}
+@media(max-width:560px){.apk-ship .grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<a class="brand" href="https://authenticpakusa.com/">AuthenticPakUSA</a>
+<nav><a href="https://authenticpakusa.com/shop">Shop</a><a href="https://authenticpakusa.com/deals">Deals</a><a href="https://authenticpakusa.com/track-order">Track Order</a><a href="https://authenticpakusa.com/contact">Help</a></nav>
+</header>
+<main>
+<div id="apk-ship" class="apk-ship">
+<h1>Shipping Rates Calculator</h1>
+<p class="sub">Live courier prices from Boston, USA to anywhere in Pakistan. Pick an option, then order on WhatsApp.</p>
+<form id="apk-form" novalidate>
+<div class="grid">
+<div>
+<label for="apk-city">City in Pakistan</label>
+<input id="apk-city" list="apk-cities" autocomplete="address-level2" placeholder="e.g. Lahore">
+<datalist id="apk-cities"><option>Lahore</option><option>Karachi</option><option>Islamabad</option><option>Rawalpindi</option><option>Faisalabad</option><option>Multan</option><option>Peshawar</option><option>Gujranwala</option><option>Sialkot</option><option>Quetta</option><option>Hyderabad</option><option>Bahawalpur</option><option>Sargodha</option><option>Abbottabad</option><option>Mirpur (AJK)</option></datalist>
+</div>
+<div>
+<label for="apk-postal">Postal code (optional)</label>
+<input id="apk-postal" autocomplete="postal-code" inputmode="numeric" placeholder="e.g. 54000">
+<span class="help">Examples: Lahore 54000, Karachi 74000, Islamabad 44000. Leave blank if unsure.</span>
+</div>
+<div>
+<label for="apk-cat">What are you ordering?</label>
+<select id="apk-cat">
+<option value="women_clothing">Women's clothing</option>
+<option value="men_clothing">Men's clothing</option>
+<option value="kids_clothing">Kids' clothing</option>
+<option value="shoes">Shoes / khussa</option>
+<option value="jewelry">Fashion jewelry</option>
+<option value="home_textiles">Home textiles</option>
+</select>
+<span class="help">Used for customs classification, which affects duty.</span>
+</div>
+<div>
+<label for="apk-weight">Parcel weight</label>
+<div class="row">
+<input id="apk-weight" type="number" min="0.05" max="30" step="0.05" value="0.5" required>
+<select id="apk-unit"><option value="kg">kg</option><option value="lb">lb</option></select>
+</div>
+<span class="help">Rough guide: one 3-piece suit ≈ 0.5 kg, shoes ≈ 0.8 kg.</span>
+</div>
+<div class="full">
+<label for="apk-value">Order value (USD)</label>
+<input id="apk-value" type="number" min="1" max="5000" step="1" value="100" required>
+<span class="help">Customs duty is calculated on this value. Please enter the real value of your items.</span>
+</div>
+<div class="full">
+<label class="toggle"><input type="checkbox" id="apk-ddp">
+<span><b>Include customs duty &amp; taxes now (DDP)</b><br>
+<span class="help">Ticked: you pay duty with shipping, so nothing to pay on delivery. Unticked: the courier collects duty from you at delivery.
+<a id="apk-wa-duty" href="#" target="_blank" rel="noopener">Ask us about duties on WhatsApp</a></span></span>
+</label>
+</div>
+</div>
+<button class="go" type="submit" id="apk-go">Get shipping prices</button>
+</form>
+<div class="msg" id="apk-msg" role="alert"></div>
+<div class="rates" id="apk-rates" aria-live="polite"></div>
+<p class="foot">Prices are live estimates for a single parcel and may change slightly when your order is packed. Delivery times are courier estimates in working days.
+Questions? <a id="apk-wa-help" href="#" target="_blank" rel="noopener">Message us on WhatsApp</a>.</p>
+</div>
+</main>
+<footer>&copy; AuthenticPakUSA — Genuine American brands delivered to Pakistan. <a href="https://authenticpakusa.com/">Back to store</a></footer>
+<script>
+(function(){
+var API_URL = "https://apk-shipping.python-tester.workers.dev";
+var WHATSAPP = "13137291534";
+var $ = function(id){return document.getElementById(id);};
+var countryName = "Pakistan";
+$("apk-wa-duty").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hi Authentic Pak USA, how much customs duty will I pay in Pakistan?");
+$("apk-wa-help").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent("Hi Authentic Pak USA, I have a question about shipping.");
+function money(n){ return "$" + Number(n).toFixed(2); }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+$("apk-form").addEventListener("submit", function(e){
+e.preventDefault();
+var msg=$("apk-msg"), out=$("apk-rates"), btn=$("apk-go");
+msg.textContent=""; out.innerHTML="";
+var body = {
+country: "PK", city: $("apk-city").value, postal: $("apk-postal").value,
+category: $("apk-cat").value, weight: $("apk-weight").value, weightUnit: $("apk-unit").value,
+value: $("apk-value").value, ddp: $("apk-ddp").checked
+};
+btn.disabled=true; btn.textContent="Checking couriers…";
+fetch(API_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)})
+.then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
+.then(function(res){
+if(!res.ok || res.j.error){ msg.textContent = res.j.error || "Could not get a quote. Please message us on WhatsApp."; return; }
+if(!res.j.rates.length){ msg.textContent = res.j.message || "No couriers found. Please message us on WhatsApp."; return; }
+out.innerHTML = res.j.rates.map(function(r,i){
+var days = r.minDays!=null ? (r.minDays===r.maxDays ? r.minDays : r.minDays+"–"+r.maxDays)+" working days" : "";
+var dutyLine = res.j.ddp
+? "Includes duty &amp; taxes " + money(r.duties) + " — nothing to pay on delivery"
+: (r.duties>0 ? "Est. duty &amp; taxes " + money(r.duties) + " paid by you on delivery" : "Duty, if any, paid on delivery");
+var text = "Hi Authentic Pak USA, I'd like to order.\n" +
+"Ship to: " + (body.city? body.city+", ":"") + countryName + (body.postal? " "+body.postal:"") + "\n" +
+"Items: " + $("apk-cat").options[$("apk-cat").selectedIndex].text + ", about " + body.weight + " " + body.weightUnit + ", value $" + body.value + "\n" +
+"Shipping option: " + r.name + " (" + days + ") — " + money(r.total) + (res.j.ddp? " incl. duty":" + duty on delivery");
+return '<div class="rate'+(i===0?' best':'')+'">' +
+'<div><span class="nm">'+esc(r.name)+'</span>'+(i===0?'<span class="tag">Cheapest</span>':'')+
+'<div class="meta">'+esc(days)+'</div><div class="meta">'+dutyLine+'</div></div>' +
+'<div class="price">'+money(r.total)+'</div>' +
+'<a class="wa" target="_blank" rel="noopener" href="https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(text)+'">Order with this option on WhatsApp</a>' +
+'</div>';
+}).join("");
+})
+.catch(function(){ msg.textContent = "Network problem. Please try again, or message us on WhatsApp."; })
+.finally(function(){ btn.disabled=false; btn.textContent="Get shipping prices"; });
+});
+})();
+</script>
+</body>
+</html>
